@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню</title>
+    <link rel="stylesheet" href="/qwe.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #73ff39/*url('/images/2.jpg') no-repeat center center fixed*/;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #ecf0f1;
+            margin: 10px 0;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        a {
+            flex-grow: 1;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            padding: 10px;
+        }
+
+        a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Главное меню</h1>
+
+    <ul>
+        <li><a href="/filmsby?years=1" >Посмотреть фильмы за последние n - количество лет</a></li>
+        <li><a href="/actors/min-films/5">Актеры, снявшиеся в минимум 5 фильмах</a></li>
+        <li><a href="/actors/directors">Актеры, которые также являются режиссерами</a></li>
+        <li><a href="/film_act">Состав актеров на фильм</a></li>
+    </ul>
+</div>
+</body>
+</html>

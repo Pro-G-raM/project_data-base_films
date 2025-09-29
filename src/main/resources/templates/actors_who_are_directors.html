@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Актеры, которые были режиссерами</title>
+    <link rel="stylesheet" href="/qwe.css">
+    <style>
+        /* Основной стиль страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('/images/2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        /* Таблица */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Сообщения */
+        .message, .error {
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .message {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .error {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Актеры, которые были режиссерами</h1>
+    <div>
+        <p th:if="${message}" class="message">[[${message}]]</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Имя актера</th>
+                <th>Дата рождения</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="actor : ${actors}">
+                <td th:text="${actor.fullName}">Имя актера</td>
+                <td th:text="${actor.birthDate}">Дата рождения</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

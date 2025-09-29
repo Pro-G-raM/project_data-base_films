@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Актеры по количеству фильмов</title>
+    <link rel="stylesheet" href="/qwe.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('/images/2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .filter-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-form label {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #2c3e50;
+        }
+
+        .filter-form select {
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #3498db;
+        }
+
+        .filter-form button {
+            font-size: 16px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        td {
+            background-color: #ecf0f1;
+            color: #34495e;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f2f3f4;
+        }
+
+        tr:hover td {
+            background-color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Актеры, снявшиеся как минимум в <span th:text="${minFilms}"></span> фильмах</h1>
+
+    <form class="filter-form" method="get" action="/actors">
+        <label for="minFilms">Выберите минимальное количество фильмов:</label>
+        <select id="minFilms" name="minFilms">
+            <option value="1" th:selected="${minFilms == 1}">1</option>
+            <option value="3" th:selected="${minFilms == 3}">3</option>
+            <option value="5" th:selected="${minFilms == 5}">5</option>
+            <option value="10" th:selected="${minFilms == 10}">10</option>
+            <option value="15" th:selected="${minFilms == 15}">15</option>
+        </select>
+        <button type="submit">Показать</button>
+    </form>
+
+    <p th:if="${#lists.isEmpty(actors)}" class="message">Нет актеров, соответствующих условиям.</p>
+
+    <table th:if="${not #lists.isEmpty(actors)}">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Количество фильмов</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="actor : ${actors}">
+            <td th:text="${actor.fullName}">Имя</td>
+            <td th:text="${actor.filmCount}">Количество фильмов</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

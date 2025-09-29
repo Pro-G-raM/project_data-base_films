@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Главное меню</title>
+  <link rel="stylesheet" href="/qwe.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #374eff/*url('/images/2.jpg') no-repeat center center fixed*/;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .dropdown select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #3498db;
+      cursor: pointer;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .no-films {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e74c3c;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .back-menu {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Фильмы за последние указанные годы</h1>
+  <div class="dropdown">
+    <form th:action="@{/filmsby}" method="get">
+      <input type="number" name="years" id="years" min="1" placeholder="Введите количество лет" required>
+      <button type="submit">Показать фильмы</button>
+    </form>
+  </div>
+  <div th:if="${films != null}">
+    <div th:if="${films.size() > 0}">
+      <table>
+        <thead>
+        <tr>
+          <th>Название</th>
+          <th>Дата выхода</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film : ${films}">
+          <td th:text="${film.title}"></td>
+          <td th:text="${film.releaseDate}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div th:if="${films.size() == 0}" class="no-films">
+      Такие фильмы отсутствуют
+    </div>
+  </div>
+  <div class="back-menu">
+    <a href="/" style="display: inline-block; padding: 10px 20px; background-color: #2c3e50; color: white; text-decoration: none; border-radius: 5px;">Вернуться в главное меню</a>
+  </div>
+</div>
+</body>
+</html>
